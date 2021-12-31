@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import styles from "../styles/Home.module.css";
 
 const Header = () => {
   return (
@@ -10,6 +11,17 @@ const Header = () => {
             <a>Ninja Smoothies</a>
           </Link>
         </h1>
+        <div>
+          <Link href="/">
+            <a className={styles.headerBtn}>home</a>
+          </Link>
+          <Link href="/login">
+            <a className={styles.headerBtn}>login</a>
+          </Link>
+          <Link href="/signup">
+            <a className={styles.headerBtn}>signup</a>
+          </Link>
+        </div>
       </nav>
     </div>
   );
