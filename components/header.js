@@ -11,7 +11,7 @@ const Header = () => {
             <a>Ninja Smoothies</a>
           </Link>
         </h1>
-        <div>
+        <ul>
           <Link href="/">
             <a className={styles.headerBtn}>home</a>
           </Link>
@@ -21,7 +21,7 @@ const Header = () => {
           <Link href="/signup">
             <a className={styles.headerBtn}>signup</a>
           </Link>
-        </div>
+        </ul>
       </nav>
     </div>
   );

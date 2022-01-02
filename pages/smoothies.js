@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Link from "next/link";
 import smoothie from "../public/smoothie.png";
 
 const smoothies = () => {
@@ -16,7 +15,7 @@ const smoothies = () => {
         <li className={styles.recipe}>
           <Image src={smoothie} alt="smoothie-image" />
           <h4>Tropical Twist</h4>
-          <p>Peach, Pinapple, Apple juice</p>
+          <p>Peach, Pineapple, Apple juice</p>
         </li>
         <li className={styles.recipe}>
           <Image src={smoothie} alt="smoothie-image" />
@@ -31,7 +30,7 @@ const smoothies = () => {
         <li className={styles.recipe}>
           <Image src={smoothie} alt="smoothie-image" />
           <h4>Tropical Twist</h4>
-          <p>Peach, Pinapple, Apple juice</p>
+          <p>Peach, Pineapple, Apple juice</p>
         </li>
         <li className={styles.recipe}>
           <Image src={smoothie} alt="smoothie-image" />

@@ -5,10 +5,9 @@ const mongoose = require("mongoose");
 const { DB_URI, PORT } = require("../utils/env_var");
 const authRoutes = require("../routes/authRoutes");
 const cookieParser = require("cookie-parser");
+const { authenticateUser } = require("../middleware/authMiddleware");
 
 const User = require("../models/user.model");
-const { errorHandler } = require("../components/errorHandler");
-const { createJsonWebToken } = require("../components/createJsonWebToken");
 
 const corsConfig = {
   credentials: true,
@@ -28,7 +27,7 @@ app.use(express.json()); //parses request in JSON format
 app.use(express.urlencoded({ extended: false })); //parses request in urlencoded format
 
 // localhost:8080 base url object
-app.get("/", (req, res) => {
+app.get("/", authenticateUser, (req, res) => {
   res.send({ name: "prasan" });
 });
 
