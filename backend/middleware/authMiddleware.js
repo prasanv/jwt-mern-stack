@@ -3,18 +3,20 @@ const jwt = require("jsonwebtoken");
 const authenticateUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-    console.log(token);
     jwt.verify(token, "PrasanJWTSample", (err, decodedToken) => {
       if (err) {
-        console.log(err);
+        res.status(400).json(err);
       } else {
-        console.log(decodedToken);
+        res.locals.userId = decodedToken.id;
+        // console.log(decodedToken);
+        next();
       }
     });
   } else {
-    console.log("no token");
+    res
+      .status(400)
+      .json({ name: "JsonWebTokenError", message: "no token found" });
   }
-  next();
 };
 
 module.exports = {

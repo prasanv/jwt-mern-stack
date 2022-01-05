@@ -38,7 +38,7 @@ const Signup = () => {
 
   if (mutation.data?.user) {
     router.push({
-      pathname: "/",
+      pathname: "/smoothies",
     });
   }
 

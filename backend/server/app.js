@@ -5,8 +5,7 @@ const mongoose = require("mongoose");
 const { DB_URI, PORT } = require("../utils/env_var");
 const authRoutes = require("../routes/authRoutes");
 const cookieParser = require("cookie-parser");
-const { authenticateUser } = require("../middleware/authMiddleware");
-
+const protectedRoutes = require("../routes/protectedRoutes");
 const User = require("../models/user.model");
 
 const corsConfig = {
@@ -27,12 +26,15 @@ app.use(express.json()); //parses request in JSON format
 app.use(express.urlencoded({ extended: false })); //parses request in urlencoded format
 
 // localhost:8080 base url object
-app.get("/", authenticateUser, (req, res) => {
+app.get("/", (req, res) => {
   res.send({ name: "prasan" });
 });
 
 // authRoutes
 app.use(authRoutes);
+
+// authRoutes
+app.use(protectedRoutes);
 
 //Cookies Example
 app.get("/set-cookies", (req, res) => {
@@ -51,22 +53,6 @@ app.get("/read-cookies", (req, res) => {
   console.log(cookies);
   res.json(cookies);
 });
-
-// app.post("/signup", (req, res) => {
-//   const newUser = req.body;
-//   const user = new User(newUser);
-//   user
-//     .save()
-//     .then(() => {
-//       const token = createJsonWebToken(user._id);
-//       res.cookie("jwt", token);
-//       res.status(201).json(user);
-//     })
-//     .catch((err) => {
-//       const errors = errorHandler(err);
-//       res.status(400).json({ errors });
-//     });
-// });
 
 app.get("/delete-many", (req, res) => {
   User.deleteMany()

@@ -12,11 +12,11 @@ const Header = () => {
           </Link>
         </h1>
         <ul>
-          <Link href="/">
-            <a className={styles.headerBtn}>home</a>
-          </Link>
           <Link href="/login">
             <a className={styles.headerBtn}>login</a>
+          </Link>
+          <Link href="/logout">
+            <a className={styles.headerBtn}>logout</a>
           </Link>
           <Link href="/signup">
             <a className={styles.headerBtn}>signup</a>

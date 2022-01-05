@@ -2,11 +2,6 @@ const User = require("../models/user.model");
 const { errorHandler } = require("../components/errorHandler");
 const { createJsonWebToken } = require("../components/createJsonWebToken");
 
-const signup_get = (req, res) => {
-  console.log("you are hitting GET - http://localhost:8080/signup");
-  res.json({ get: "signup" });
-};
-
 const signup_post = async (req, res) => {
   const { email, password, security_question, security_answer } = req.body;
   try {
@@ -25,11 +20,6 @@ const signup_post = async (req, res) => {
   }
 };
 
-const login_get = (req, res) => {
-  console.log("you are hitting GET - http://localhost:8080/login");
-  res.json({ get: "login" });
-};
-
 const login_post = async (req, res) => {
   const { email, password } = req.body;
 
@@ -45,9 +35,13 @@ const login_post = async (req, res) => {
     });
 };
 
+const logout_post = async (req, res) => {
+  res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
+  res.status(200).json("logout successful");
+};
+
 module.exports = {
-  signup_get,
   signup_post,
-  login_get,
   login_post,
+  logout_post,
 };
