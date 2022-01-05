@@ -36,21 +36,23 @@ const Smoothies = (props) => {
 
   return (
     <div>
-      <h3>
-        Welcome, {info.data?.resCode === 200 && info.data?.resData?.email} here
-        are our products for you{" "}
-      </h3>
-      <ul className={styles.recipes}>
-        {info.isLoading && "Loading..."}
-        {info.data?.resCode === 200 &&
-          info.data?.resData?.products?.map((ind) => (
-            <li className={styles.recipe} key={ind.id}>
-              <Image src={smoothie} alt="smoothie-image" />
-              <h4>{ind.name}</h4>
-              <p>{ind.ingredients}</p>
-            </li>
-          ))}
-      </ul>
+      {info.isLoading && "Loading..."}
+      {info.data?.resCode === 200 && (
+        <div>
+          <h3>
+            Welcome, {info.data?.resData?.email} here are our products for you{" "}
+          </h3>
+          <ul className={styles.recipes}>
+            {info.data?.resData?.products?.map((ind) => (
+              <li className={styles.recipe} key={ind.id}>
+                <Image src={smoothie} alt="smoothie-image" />
+                <h4>{ind.name}</h4>
+                <p>{ind.ingredients}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
